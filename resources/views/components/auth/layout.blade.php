@@ -21,12 +21,29 @@
 </head>
 <body>
 <div class="container-scroller">
+
     <div class="container-fluid page-body-wrapper full-page-wrapper">
         <div class="row w-100 m-0">
             <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
                 <div class="card col-lg-4 mx-auto">
                     <div class="card-body px-5 py-5">
+
                         {{ $slot }}
+
+                        {{-- Flash Messages --}}
+                        @if(session('success'))
+                            <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                                <strong>Success!</strong> {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        @if(session('error'))
+                            <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+                                <strong>Error!</strong> {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
