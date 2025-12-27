@@ -16,6 +16,10 @@ class AuthController extends Controller
     {
         return view('AdminDashboard.Auth.register');
     }
+    public function dashboard(): View
+    {
+        return view('AdminDashboard.dashboard');
+    }
 
     public function register(RegisterRequest $request)
     {
@@ -39,7 +43,7 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         if (Auth::attempt($request->only('email', 'password'))){
-            return redirect()->intended('/')->with('success', __('auth.login.success'));
+            return redirect()->intended('admin')->with('success', __('auth.login.success'));
         }
         return redirect()->back()->with('error', __('auth.login.failed'));
     }
